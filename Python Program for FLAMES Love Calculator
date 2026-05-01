@@ -1,0 +1,21 @@
+a = input("Enter boys name: ")
+b = input("Enter girl name: ")
+
+a1 = list(a.lower())
+b1 = list(b.lower())
+for i in range(len(a1)):
+    for j in range(len(b1)):
+        if a1[i] == b1[j]:
+            a1[i] = '0'
+            b1[j] = '0'
+            break
+cnt = a1.count('0')
+cnt = (len(a1) + len(b1)) - (2 * cnt)
+res = list("FLAMES")
+index = 0
+
+while len(res) > 1:
+    index = (index + cnt - 1) % len(res)
+    res.pop(index)
+
+print("Relationship is:", res[0])
