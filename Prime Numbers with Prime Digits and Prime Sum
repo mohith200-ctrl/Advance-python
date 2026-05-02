@@ -1,0 +1,21 @@
+def prime(n):
+    if n <= 1:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+def sod(n):
+    return sum(int(d) for d in str(n))
+    
+    
+def every(n):
+    for d in str(n):
+        if int(d) not in [2, 3, 5, 7]:
+            return False
+    return True
+
+for i in range(100, 1000):
+    if prime(i) and prime(sod(i)) and every(i):
+        print(i, end=" ")
