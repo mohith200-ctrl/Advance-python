@@ -1,0 +1,20 @@
+def monkey_climb(x, y, z):
+    minutes = 0
+    height = 0
+    
+    while True:
+        # Climb up
+        height += y
+        minutes += 1
+        
+        # Check if reached top
+        if height >= x:
+            return minutes
+        
+        # Slip down
+        height -= z
+        minutes += 1
+
+# Test cases
+x, y, z = map(int, input("Enter X Y Z: ").split())
+print("Output is", monkey_climb(x, y, z), "minutes")
