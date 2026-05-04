@@ -1,0 +1,18 @@
+Math = ['Tom','Jerry','Spike','Tyke']
+Political = ['Jerry','Spike','Butch','Nibbles']
+Science = ['Spike','Tyke','Nibbles','Quacker']
+
+m = set(Math)
+p = set(Political)
+s = set(Science)
+all_subjects = m & p & s
+
+
+exactly_two = (m & p) | (m & s) | (p & s) - all_subjects
+
+
+only_one = (m | p | s) - (m & p) - (m & s) - (p & s)
+
+print("All subject =", list(all_subjects))
+print("Exactly two subject =", list(exactly_two))
+print("Only one Subject =", list(only_one))
