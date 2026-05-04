@@ -1,0 +1,9 @@
+maths=["Raj","Anu","Kiran","Bala","Pavi"]
+political=['Raj','Bala','Meera','Peter','Ken']
+social=['Ben','Raj','Meera','Arun','Mohan']
+
+m=set(maths)
+p=set(political)
+s=set(social)
+
+print(m&p&s)
