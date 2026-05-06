@@ -1,0 +1,10 @@
+import math
+
+num = 625
+angle_degrees = 90
+
+print("Square Root:", math.sqrt(num))
+print("Factorial:", math.factorial(5))
+print("Logarithm base 10:", math.log10(1000))
+print("Sine of 45 degrees:", math.sin(math.radians(angle_degrees)))
+print("Value of Pi:", math.pi)
