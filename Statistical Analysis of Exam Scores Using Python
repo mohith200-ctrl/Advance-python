@@ -1,0 +1,14 @@
+import statistics
+exam_scores = [70, 95, 90, 98, 58, 95, 89, 92, 95, 72]
+mean_value = statistics.mean(exam_scores)
+median_value = statistics.median(exam_scores)
+mode_value = statistics.mode(exam_scores)
+
+variance_value = statistics.variance(exam_scores)
+std_dev_value = statistics.stdev(exam_scores)
+
+print(f"Mean (Average Score): {mean_value}")
+print(f"Median (Middle Score): {median_value}")
+print(f"Mode (Most Frequent Score): {mode_value}")
+print(f"Variance (Score Spread): {variance_value}")
+print(f"Standard Deviation (Score Deviation): {std_dev_value}")
