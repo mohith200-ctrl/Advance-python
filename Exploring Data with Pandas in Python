@@ -1,0 +1,12 @@
+import pandas as pd
+data = {
+    "Name": ["mohith", "Vagdevi", "jyothi"],
+    "Age": [25, 35, 40],
+    "Salary": [80000, 50000, 70000]
+}
+df = pd.DataFrame(data)
+print(df.head())
+print(df)
+print(df["Age"])
+print(df["Age"].max())
+print(df.describe())
