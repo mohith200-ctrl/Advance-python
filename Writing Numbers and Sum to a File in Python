@@ -1,0 +1,14 @@
+a = open("tvk.txt", 'w')
+
+n1 = int(input("Enter any num1: "))
+n2 = int(input("Enter any num2: "))
+
+s = n1 + n2
+
+a.write(str(n1))
+a.write(str(n2))
+a.write(str(s))
+
+print("ok")
+
+a.close()
