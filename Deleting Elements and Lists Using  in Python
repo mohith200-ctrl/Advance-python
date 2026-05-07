@@ -1,0 +1,14 @@
+names = ['John', 'Eva', 'Laura', 'Nick', 'Jack']
+
+
+del names[1]
+print(names)
+
+
+del names[1: 3]
+print(names)
+
+
+del names
+
+print(names)
