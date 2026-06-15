@@ -1,0 +1,13 @@
+n = 10
+
+
+for i in range(n):
+    for j in range(6):
+        if ((j == 0 or j == 5) and i % 4 == 0) \
+        or ((j == 1 or j == 4) and i % 4 == 1) \
+        or ((j == 2 or j == 3) and i % 4 == 2) \
+        or ((j == 1 or j == 4) and i % 4 == 3):
+            print("*", end=" ")
+        else:
+            print(" ", end=" ")
+    print()
