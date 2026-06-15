@@ -1,0 +1,144 @@
+class InvalidGradeError(Exception):
+    """Raised when a user inputs a grade outside the 0-100 range."""
+    pass
+class Student:
+    def __init__(self, student_id: str, name: str):
+        self.student_id = student_id
+        self.name = name
+        self.grades = []  # Stores integer grades
+
+    def add_grade(self, grade: int):
+        """Validates and adds a single grade to the record manually."""
+        if grade < 0 or grade > 100:
+            raise InvalidGradeError("Grade must be between 0 and 100.")
+        self.grades.append(grade)
+
+    def calculate_average(self) -> float:
+        """Calculates the average score using a manual addition loop."""
+        if len(self.grades) == 0:
+            return 0.0
+        
+        total_sum = 0
+        for current_grade in self.grades:
+            total_sum = total_sum + current_grade
+            
+        
+        average_score = total_sum / len(self.grades)
+        return average_score
+
+    def determine_letter_grade(self) -> str:
+        """Applies conditional logic to assign a final performance rank."""
+        average = self.calculate_average()
+        
+        if average >= 90.0:
+            return "A"
+        elif average >= 80.0:
+            return "B"
+        elif average >= 70.0:
+            return "C"
+        elif average >= 60.0:
+            return "D"
+        else:
+            return "F"
+class GradebookDatabase:
+    def __init__(self):
+        self.records = {}  # Acts as a persistent simulation dictionary
+
+    def insert_student(self, student: Student):
+        """Saves a student object to the database mapping."""
+        self.records[student.student_id] = student
+
+    def lookup_student(self, student_id: str) -> Student:
+        """Looks up a specific ID manually without shorthand lookups."""
+        for existing_id in self.records:
+            if existing_id == student_id:
+                return self.records[existing_id]
+        return None
+def display_menu():
+    """Prints terminal separation lines and command actions."""
+    print("\n" + "=" * 40)
+    print("      STUDENT GRADE SYSTEM MENU       ")
+    print("=" * 40)
+    print("1. Register a New Student")
+    print("2. Enter Grades for a Student")
+    print("3. View Student Report Card")
+    print("4. Exit Application")
+    print("=" * 40)
+def run_system():
+    """Main lifecycle engine driving terminal navigation loops."""
+    db = GradebookDatabase()
+    
+    while True:
+        display_menu()
+        user_choice = input("Select an option (1-4): ").strip()
+
+        
+        if user_choice == "1":
+            print("\n--- Register New Student ---")
+            new_id = input("Enter unique Student ID: ").strip()
+            
+            
+            if db.lookup_student(new_id) is not None:
+                print("Error: A student with this ID already exists!")
+                continue
+                
+            new_name = input("Enter Student Full Name: ").strip()
+            new_student = Student(student_id=new_id, name=new_name)
+            db.insert_student(new_student)
+            print(f"Success: {new_name} registered under ID {new_id}.")
+
+        
+        elif user_choice == "2":
+            print("\n--- Enter Grades ---")
+            search_id = input("Enter Student ID: ").strip()
+            student = db.lookup_student(search_id)
+            
+            if student is None:
+                print("Error: Student ID not found in records.")
+                continue
+                
+            while True:
+                grade_input = input("Enter a score (or type 'done' to finish): ").strip()
+                if grade_input.lower() == "done":
+                    break
+                    
+                try:
+                    numeric_grade = int(grade_input)
+                    student.add_grade(numeric_grade)
+                    print(f"Grade {numeric_grade} recorded successfully.")
+                except ValueError:
+                    print("Invalid input! Please enter a whole number.")
+                except InvalidGradeError as error_message:
+                    print(f"Validation Error: {error_message}")
+
+        
+        elif user_choice == "3":
+            print("\n--- Report Card Summary ---")
+            search_id = input("Enter Student ID: ").strip()
+            student = db.lookup_student(search_id)
+            
+            if student is None:
+                print("Error: Student ID not found in records.")
+                continue
+                
+            final_avg = student.calculate_average()
+            final_letter = student.determine_letter_grade()
+            
+            print("\n" + "-" * 30)
+            print(f"ID:      {student.student_id}")
+            print(f"Name:    {student.name}")
+            print(f"Scores:  {student.grades}")
+            print(f"Average: {final_avg:.2f}%")
+            print(f"Grade:   {final_letter}")
+            print("-" * 30)
+
+        
+        elif user_choice == "4":
+            print("\nShutting down system. Goodbye!")
+            break
+
+        
+        else:
+            print("Invalid system option selected. Choose a number between 1 and 4.")
+if __name__ == "__main__":
+    run_system()
