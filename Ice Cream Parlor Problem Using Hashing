@@ -1,0 +1,12 @@
+def fun():
+    l = [1, 3, 4, 5, 6]
+    total = 6
+    b = []
+    for i in l:  
+        diff = total - i  
+        if diff in b:
+            return [l.index(diff) + 1, l.index(i) + 1]
+        b.append(i)
+
+result = fun()
+print(result)
